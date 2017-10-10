@@ -886,11 +886,13 @@ The description of ARG is in `neotree-enter'."
          (around neotree/popwin-popup-buffer activate)
        (let ((neo-exists-p (neo-global--window-exists-p)))
          (when neo-exists-p
-           (neo-global--detach))
+           ;; (neo-global--detach)
+           (neotree-hide))
          ad-do-it
          (when neo-exists-p
-           (neo-global--attach)
-           (neo-global--reset-width))))
+           ;; (neo-global--attach)
+           ;; (neo-global--reset-width)
+           (neotree-show))))
 
      (defadvice popwin:close-popup-window
          (around neotree/popwin-close-popup-window activate)
