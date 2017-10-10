@@ -871,13 +871,14 @@ The description of ARG is in `neotree-enter'."
     (around neotree-balance-windows activate)
   "Fix neotree inhibits balance-windows."
   (if (neo-global--window-exists-p)
-      (let (old-width)
-        (neo-global--with-window
-          (setq old-width (window-width)))
-        (neo-buffer--with-resizable-window
-         ad-do-it)
-        (neo-global--with-window
-          (neo-global--set-window-width old-width)))
+      (progn (neotree-hide) ad-do-it (neotree-show))
+      ;; (let (old-width)
+      ;;   (neo-global--with-window
+      ;;     (setq old-width (window-width)))
+      ;;   (neo-buffer--with-resizable-window
+      ;;    ad-do-it)
+      ;;   (neo-global--with-window
+      ;;     (neo-global--set-window-width old-width)))
     ad-do-it))
 
 (eval-after-load 'popwin
